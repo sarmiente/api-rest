@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const router = express.Router()
 const Model = require('../models/model')
 
+
 //USERS LIST
 router.get('/', verifyToken, async (req, res) => {
     const users = await Model.find()
@@ -26,7 +27,7 @@ router.get('/:id', verifyToken, getUser, (req, res) => {
     jwt.verify(req.token, 'secretkey', (error, user) => {
         if(error){
             res.status(401).json({
-                "error": "error"
+                "error": "No token provided"
             })
         } else {
             res.json(res.user)
@@ -39,16 +40,16 @@ router.get('/:id', verifyToken, getUser, (req, res) => {
 
 //CREATING USER
 router.post('/', verifyToken, async (req, res) => {
-    
-    const user = new Model({
+
+     const user = new Model({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
         email: req.body.email,
         password: req.body.password,
-        token,
+        token: req.body.token,
         age: req.body.age,
-        description: req.body.description
-    })
+        image: req.body.image
+    })     
     try {
         const newUser = await user.save()
         res.status(201).json(newUser)
@@ -57,6 +58,9 @@ router.post('/', verifyToken, async (req, res) => {
             "error": "Error creando usuario"
         })
     }
+   
+    
+    
 });
 
 //UPDATING USER
@@ -86,7 +90,7 @@ router.delete('/:id', getUser, async (req, res) => {
        })   
     } catch (error) {
         res.status(404).json({
-            "error": "error error error"
+            "error": "Error removing user"
         })
     }
 });

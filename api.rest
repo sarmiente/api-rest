@@ -1,4 +1,7 @@
+POST http://localhost:8000/login
+Content-Type: application/json
 
+###
 GET http://localhost:8000/
 
 
@@ -7,44 +10,30 @@ GET http://localhost:8000/users
 Authorization: Bearer <access_token>
 
 ###
-POST http://localhost:8000/login
-Content-Type: application/json
-
-{
-    "email": "user@example.com",
-    "password": "secure"
-}
-
-
-###
-GET http://localhost:8000/users/5f890ba1ba6a7d159c4464ba
+GET http://localhost:8000/users/<id>
 Authorization: Bearer <access_token>
 Content-Type: application/json
 
 
 ###
 POST http://localhost:8000/users
+Authorization: Bearer 
 Content-Type: application/json
 
 {
-    "first_name": "John",
-    "last_name": "Doe",
+    "first_name": "Johaaan",
+    "last_name": "Doaaaae",
     "email": "user@example.com",
-    "token": "Hd6hgsj7d%d7%4dbhs&5d",
-    "age": 24,
-    "image": "IMAGE",
-    "description": "Description text"
+    "password": "SECRET",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImVtYWlsIjoidXNlckBleGFtcGxlLmNvbSIsInBhc3N3b3JkIjoic2VjdXJlIn0sImlhdCI6MTYwMjg2NzcwM30.9EVWRnPDLuU6hwTmrp9GAJlnYCvT76o0k6KCgSYSMuU",
+    "age": 42,
+    "image": "IMAGE"
 }
 
 ###
-DELETE http://localhost:8000/users/5f89085ef090e513b8b0c263
+DELETE http://localhost:8000/users/<id>
 
 ###
-PATCH http://localhost:8000/users/5f890ba1ba6a7d159c4464ba
+PATCH http://localhost:8000/users/<id>
 Content-Type: application/json
 
-
-{
-    "first_name": "Johnaattta",
-    "last_name": "Doeeaaasa"    
-}
